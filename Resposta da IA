@@ -1,0 +1,41 @@
+Aqui está um código em **Python** que realiza as seguintes ações:
+1. Lê as três planilhas: **Despesas**, **Cálculos**, e **Dashboard**.
+2. Apresenta um **resumo detalhado** das receitas, despesas fixas e variáveis.
+3. Gera **gráficos** para mostrar as variações mensais.
+
+---
+
+### Código Python Completo:
+O código utiliza as bibliotecas **pandas** e **matplotlib** para análise e visualização.
+
+Está no outro documento de nome Planilha_IA
+
+---
+
+### **Como o Código Funciona**:
+1. **Carrega os dados** das planilhas "Despesas" e "Cálculos".
+2. **Processa as informações** para calcular:
+   - Receitas mensais.
+   - Despesas fixas mensais.
+   - Saldo mensal (receitas - despesas fixas).
+3. **Exibe um gráfico** comparando receitas, despesas e saldo ao longo dos meses.
+4. **Apresenta um resumo** no console com os valores detalhados.
+
+---
+
+### **Resultado Esperado**:
+- Um **gráfico** exibindo as **receitas, despesas fixas e saldo mensal**.
+- Um **resumo no console**:
+   - Receitas totais por mês.
+   - Despesas fixas por mês.
+   - Saldo mensal e saldo total anual.
+
+---
+
+### Dependências:
+Instale as bibliotecas necessárias, caso ainda não estejam instaladas:
+```bash
+pip install pandas matplotlib seaborn openpyxl
+```
+
+Se precisar de mais funcionalidades, como incluir despesas variáveis ou ajustar outros detalhes, é só avisar! 🚀
