@@ -1,0 +1,60 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Carregar os dados do arquivo Excel
+file_path = '02-16 - Despesas Mensais.xlsx'
+
+# Carregar as planilhas relevantes
+despesas_df = pd.read_excel(file_path, sheet_name='Despesas')
+calculos_df = pd.read_excel(file_path, sheet_name='Cálculos')
+
+def processar_despesas(df):
+    """
+    Processa a planilha de Despesas para obter receitas e despesas detalhadas.
+    """
+    # Renomear colunas para facilitar
+    df.columns = ['Categoria', 'JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
+    df = df.dropna(how='all')
+
+    # Separar receitas e despesas
+    receitas = df.loc[df['Categoria'] == 'Receitas'].iloc[:, 1:].sum()
+    despesas_fixas = df.loc[df['Categoria'] == 'Despesas Fixas'].iloc[:, 1:].sum()
+
+    return receitas, despesas_fixas
+
+# Processar dados de despesas
+receitas, despesas_fixas = processar_despesas(despesas_df)
+
+# Cálculo do saldo mensal
+saldo_mensal = receitas - despesas_fixas
+
+# Visualização dos dados
+sns.set(style="whitegrid")
+plt.figure(figsize=(10, 6))
+
+# Gráfico de Receitas e Despesas Fixas
+plt.plot(receitas.index, receitas.values, label='Receitas', marker='o')
+plt.plot(despesas_fixas.index, despesas_fixas.values, label='Despesas Fixas', marker='o')
+plt.plot(saldo_mensal.index, saldo_mensal.values, label='Saldo Mensal', marker='o', linestyle='--')
+
+plt.title('Receitas, Despesas Fixas e Saldo Mensal')
+plt.xlabel('Meses')
+plt.ylabel('Valores (R$)')
+plt.legend()
+plt.show()
+
+# Mostrar resumo no console
+print("=== Resumo das Receitas e Despesas ===")
+print("\nReceitas Mensais:")
+print(receitas)
+
+print("\nDespesas Fixas Mensais:")
+print(despesas_fixas)
+
+print("\nSaldo Mensal:")
+print(saldo_mensal)
+
+# Cálculo do saldo anual
+saldo_anual = saldo_mensal.sum()
+print(f"\nSaldo Anual Total: R$ {saldo_anual:.2f}")
